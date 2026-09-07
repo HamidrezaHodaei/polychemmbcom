@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import AppLoading from '~/components/AppLoading.vue'
+import AppLoading from '~/components/en/loading/AppLoading.vue'
 </script>
 
 <style scoped>

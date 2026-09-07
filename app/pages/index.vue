@@ -1,61 +1,76 @@
 <template>
-  <Landpage v-if="showLanding" />
-  <div v-else>
-    <Navbar/>
-    <Hero2/>
-    <div class="mt-8 slider">
-      <Slider/>
-      <Text/>
-      <Cards/>
-      <global/>
-      <infinityslider/>
-    </div>
-    <footer1/> 
-  </div>
+  <div></div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import Landpage from "~/components/landpage.vue"
-import Navbar from "~/components/navbar.vue"
-import Slider from "~/components/Slider.vue"
-import Hero from "~/components/Hero2.vue"
-import Cards from "~/components/cards.vue"
-import Text from "~/components/Text.vue"
-import global from "~/components/world.vue"
-import infinityslider from "~/components/InfiniteSlider.vue"
-import footer1 from "~/components/footer.vue"
-
-const showLanding = ref(false)
-const router = useRouter()
-
-onMounted(() => {
-  // Check if user has already seen the landing page in this session
-  const hasSeenLanding = sessionStorage.getItem('hasSeenLanding')
-  
-  if (!hasSeenLanding) {
-    showLanding.value = true
-  }
-  
-  // پاک کردن موقعیت اسکرول قبلی هنگام بارگذاری اول صفحه
-  if (!sessionStorage.getItem('hasSeenLanding')) {
-    sessionStorage.removeItem('homeScrollPosition')
-  }
+// ✅ SEO انگلیسی کامل
+useSeoMeta({
+  title: 'POLYCHEM | Masterbatch & Polymer Compound Manufacturer | Aras Free Zone Iran',
+  ogTitle: 'POLYCHEM | Masterbatch & Polymer Compound Manufacturer | Aras Free Zone Iran',
+  description: 'POLYCHEM (Polychemmb) — Iran\'s leading manufacturer of color masterbatch, filler masterbatch (CaCO3), additive masterbatch, PP compound and engineering polymer blends. Located in Aras Free Zone, exporting to Middle East & Caucasus.',
+  ogDescription: 'Leading manufacturer and exporter of masterbatch and polymer compounds in Iran. ISO 9001:2015 certified. Aras Free Zone, Jolfa.',
+  ogUrl: 'https://polychemmb.com/en',
+  ogType: 'website',
+  ogImage: 'https://polychemmb.com/logo.png',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'POLYCHEM | Masterbatch & Polymer Compound | Iran',
+  twitterDescription: 'Iran\'s leading masterbatch manufacturer — color, filler, additive masterbatch & PP compound. Aras Free Zone.',
 })
 
-// Listen for landing page completion event
-if (process.client) {
-  window.addEventListener('landing-complete', () => {
-    sessionStorage.setItem('hasSeenLanding', 'true')
-    showLanding.value = false
-  })
-  
-  // پاک کردن موقعیت اسکرول هنگام رفتن به صفحات دیگر
-  router.beforeEach((to, from, next) => {
-    if (from.path === '/' && to.path !== '/') {
-      sessionStorage.removeItem('homeScrollPosition')
-    }
-    next()
-  })
-}
+useHead({
+  htmlAttrs: { lang: 'en', dir: 'ltr' },
+  link: [
+    { rel: 'canonical', href: 'https://polychemmb.com/en' },
+    { rel: 'alternate', hreflang: 'en', href: 'https://polychemmb.com/en' },
+    { rel: 'alternate', hreflang: 'fa', href: 'https://polychemmb.com/fa' },
+    { rel: 'alternate', hreflang: 'ar', href: 'https://polychemmb.com/ar' },
+    { rel: 'alternate', hreflang: 'tr', href: 'https://polychemmb.com/tr' },
+    { rel: 'alternate', hreflang: 'x-default', href: 'https://polychemmb.com/en' },
+  ],
+  meta: [
+    { name: 'robots', content: 'index, follow' },
+    {
+      name: 'keywords',
+      content: 'masterbatch, color masterbatch, filler masterbatch, additive masterbatch, polymer compound, PP compound, PP-Talc compound, masterbatch manufacturer Iran, Polychem, Polychemmb, Aras Free Zone, CaCO3 masterbatch, UV masterbatch, flame retardant masterbatch, anti-static masterbatch, engineering polymer, plastic additives, masterbatch exporter Iran'
+    },
+    { name: 'author', content: 'Polychem Corporation (Polychemmb)' },
+    { property: 'og:locale', content: 'en_US' },
+    { property: 'og:locale:alternate', content: 'fa_IR' },
+    { property: 'og:site_name', content: 'Polychem | Polychemmb' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      key: 'en-webpage-schema',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        '@id': 'https://polychemmb.com/en/#webpage',
+        url: 'https://polychemmb.com/en',
+        name: 'POLYCHEM | Masterbatch & Polymer Compound Manufacturer | Aras Free Zone Iran',
+        description: 'POLYCHEM (Polychemmb) is Iran\'s leading manufacturer of masterbatch and polymer compounds located in Aras Free Zone.',
+        inLanguage: 'en',
+        isPartOf: { '@id': 'https://polychemmb.com/#website' },
+        about: { '@id': 'https://polychemmb.com/#organization' },
+        breadcrumb: {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://polychemmb.com/en',
+            },
+          ],
+        },
+        keywords: 'masterbatch, color masterbatch, filler masterbatch, polymer compound, PP compound, masterbatch manufacturer Iran, Polychem, Polychemmb',
+      }),
+    },
+  ],
+})
+
+// ✅ ریدایرکت به صفحه انگلیسی
+onMounted(() => {
+  navigateTo('/en')
+})
 </script>

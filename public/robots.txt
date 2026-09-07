@@ -1,2 +1,73 @@
-User-Agent: *
-Disallow:
+# robots.txt — polychemmb.com
+# Updated for AI crawlers (GEO — Generative Engine Optimization)
+
+# ===== STANDARD CRAWLERS =====
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /clientarea/
+Disallow: /api/
+Disallow: /_nuxt/
+
+# ===== GOOGLE =====
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Googlebot-Image
+Allow: /
+
+# ===== BING (ChatGPT از Bing ایندکس می‌گیره) =====
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# ===== CHATGPT / OPENAI =====
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# ===== ANTHROPIC / CLAUDE =====
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# ===== GOOGLE AI / GEMINI =====
+User-agent: Google-Extended
+Allow: /
+
+# ===== PERPLEXITY =====
+User-agent: PerplexityBot
+Allow: /
+
+# ===== META AI =====
+User-agent: FacebookBot
+Allow: /
+
+# ===== APPLE =====
+User-agent: Applebot
+Allow: /
+
+# ===== AMAZON ALEXA =====
+User-agent: ia_archiver
+Allow: /
+
+# ===== COMMON AI RESEARCH CRAWLERS =====
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# ===== SITEMAP =====
+Sitemap: https://polychemmb.com/sitemap.xml
